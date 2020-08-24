@@ -19,12 +19,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	public static final String[] public_matchers = {
-		"/**"	
-	};
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -36,10 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.cors().and().csrf().disable();
-		
-		http.authorizeRequests()
-		.antMatchers(public_matchers).permitAll()
-		.anyRequest().authenticated();
 		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
