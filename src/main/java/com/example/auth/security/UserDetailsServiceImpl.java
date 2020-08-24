@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		set.add(Perfil.toEnum(1));
 		set.add(Perfil.toEnum(2));
 		
-		return new UserDetailsImpl(1, "alexoliveira@email.com", "123", set);
+		return new UserDetailsImpl(1, "alexoliveira@email.com", "$2y$12$JENMa2QwGCrnB/5lzrjI/u1VyQ.4XLluPIFzCJu/u6ykV1SAxsL6u", set);
 	}
 
 }
