@@ -16,15 +16,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
-		if(!email.equals("alexoliveira@email.com")) {
-			throw new UsernameNotFoundException(email);
+		if(email.equals("alexoliveira@email.com")) {
+			Set<Perfil> set = new HashSet<>(); 
+			set.add(Perfil.toEnum(1));
+			set.add(Perfil.toEnum(2));
+			
+			return new UserDetailsImpl(1, "alexoliveira@email.com", "$2y$12$JENMa2QwGCrnB/5lzrjI/u1VyQ.4XLluPIFzCJu/u6ykV1SAxsL6u", set);
 		}
 		
-		Set<Perfil> set = new HashSet<>(); 
-		set.add(Perfil.toEnum(1));
-		set.add(Perfil.toEnum(2));
+		if(email.equals("usuario@email.com")) {
+			Set<Perfil> set = new HashSet<>(); 
+			set.add(Perfil.toEnum(1));
+			
+			return new UserDetailsImpl(1, "usuario@email.com", "$2y$12$JENMa2QwGCrnB/5lzrjI/u1VyQ.4XLluPIFzCJu/u6ykV1SAxsL6u", set);
+		}
 		
-		return new UserDetailsImpl(1, "alexoliveira@email.com", "$2y$12$JENMa2QwGCrnB/5lzrjI/u1VyQ.4XLluPIFzCJu/u6ykV1SAxsL6u", set);
+		throw new UsernameNotFoundException(email);
 	}
 
 }
